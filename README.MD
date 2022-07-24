@@ -20,14 +20,19 @@
   * csvcut -c "category_code" 2019-Oct-Nov-2.csv | awk -F "." '{print $NF}' > kategori-2.csv
     Memfilter kolom category_code dan meng-split data dengan koma, bagian terakhir dari hasil filter tersebut yang
     merupakan jenis produk disimpan dalam fila kategori-2.csv 
-  * csvjoin 2019-Oct-Nov-3.csv kategori-1.csv kategori-2.csv > 2019-Oct-Nov-Final.csv
-    Menggabungkan kolom kategori-1 dan kategori-2 dengan file 2019-Oct-Nov-3.csv kedalam file 2019-Oct-Nov-Final.csv
-  * csvlook 2019-Oct-Nov-Final.csv | head -20
+  * csvjoin 2019-Oct-Nov-3.csv kategori-1.csv kategori-2.csv > data_clean.csv
+    Menggabungkan kolom kategori-1 dan kategori-2 dengan file 2019-Oct-Nov-3.csv kedalam file data_clean.csv
+  * csvlook data_clean.csv | head -20
     Menampilkan 20 baris pertama dari data hasil olahan tadi
 
 - Cara menjalankan program
-  pada lokasi atau folder tempat file bash berada eksekusi sintaks berikut
+  Pada lokasi atau folder tempat file bash berada eksekusi sintaks berikut
   ./data_cleansing.sh
+
+- Pengujian program
+  Dikarenakan file csv hasil olahan (data_clean.csv) tidak disimpan dalam folder khusus. maka pengujian programnya
+  dapat menggunakan sintaks yang telah dimodifikasi berikut
+  cat data_clean.csv | grep electronics | grep smartphone| awk -F ',' '{print $5}'| sort | uniq -c | sort -nr
 
 - Saran perbaikan
   Nama pada 2 kolom terakhir belum sesuai dengan eskpektasi program, dimana seharusnya tertulis dengan nama category
